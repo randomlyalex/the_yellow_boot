@@ -6,16 +6,32 @@
   "scripts": {
     "frontend-install": "npm install --prefix frontend",
     "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
+    "server-dev": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
     "seed-data": "node backend/seed"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1"
   }
 }
