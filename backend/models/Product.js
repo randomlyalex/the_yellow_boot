@@ -1,5 +1,15 @@
 const mongoose = require('mongoose');
 
+const priceVal = (val) => {
+  //check 3 integers for the price, and that RSP > COST > TAX
+  return val.length == 3 && val[2] > val[0] && val[2] > val[1];
+};
+
+const dimVal = (val) => {
+  //check 3 integers for the dimensions
+  return val.length == 3;
+};
+
 const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -11,15 +21,15 @@ const ProductSchema = new mongoose.Schema({
   },
   category1: {
     type: String,
-    enum: ['MEN', 'WOMEN', 'KIDS'],
+    enum: ['MENS', 'WOMENS', 'KIDS'],
     required: true,
   },
   category2: {
     type: String,
-    enum: ['OUTDOOR', 'FASHION', 'SPORT', 'BUSINESS'],
+    enum: ['OUTDOOR', 'FASHION', 'SPORT', 'FORMAL'],
     required: true,
   },
-  imageUrl: {
+  imageUrls: {
     type: [String],
     required: true,
   },
@@ -37,20 +47,17 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  sizeCm3: {
-    type: Number,
+  package_dimensions_cm: {
+    type: [Number],
+    validate: [dimVal, 'L, W, H cm required'],
     required: true,
   },
   date_added: {
     type: Date,
+
     default: Date.now,
   },
 });
-
-const priceVal = val => {
-  //check 3 integers for the price, and that RSP > COST > TAX
-  return val.length == 3 && val[2] > val[0] && val[2] > val[1];
-};
 
 const Product = mongoose.model('product', ProductSchema);
 
