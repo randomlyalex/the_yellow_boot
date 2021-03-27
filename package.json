@@ -9,7 +9,7 @@
     "server-dev": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
-    "seed-data": "node backend/seed"
+    "seed-data": "node backend/db/seed"
   },
   "author": "",
   "license": "ISC",
