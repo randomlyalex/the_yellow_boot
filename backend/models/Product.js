@@ -19,6 +19,10 @@ const ProductSchema = new mongoose.Schema({
     enum: ['OUTDOOR', 'FASHION', 'SPORT', 'BUSINESS'],
     required: true,
   },
+  imageUrl: {
+    type: [String],
+    required: true,
+  },
   taxCode: {
     type: String,
     enum: ['1', '2', '3', '4'],
