@@ -11,5 +11,5 @@ app.use(express.json());
 const SERVER_PORT = process.env.SERVER_PORT || 4000;
 
 app.listen(SERVER_PORT, () =>
-  console.log(`Server listening on ${SERVER_PORT}`),
+  console.log(`Server listening on ${SERVER_PORT}`)
 );
