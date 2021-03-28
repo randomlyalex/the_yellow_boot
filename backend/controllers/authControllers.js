@@ -3,7 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-module.exports.register = (req, res) => {
+const register = (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
@@ -43,7 +43,7 @@ module.exports.register = (req, res) => {
   });
 };
 
-module.exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     res.status(400).json({ msg: 'Please enter all fields' });
@@ -75,8 +75,14 @@ module.exports.login = async (req, res) => {
   });
 };
 
-module.exports.getUser = (req, res) => {
+const getUser = (req, res) => {
   User.findById(req.user.id)
     .select('-password')
     .then((user) => res.json(user));
+};
+
+module.exports = {
+  register,
+  login,
+  getUser,
 };
