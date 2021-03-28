@@ -75,7 +75,7 @@ module.exports.login = async (req, res) => {
   });
 };
 
-module.exports.get_user = (req, res) => {
+module.exports.getUser = (req, res) => {
   User.findById(req.user.id)
     .select('-password')
     .then((user) => res.json(user));
