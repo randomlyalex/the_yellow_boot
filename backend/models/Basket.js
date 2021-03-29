@@ -14,13 +14,13 @@ const BasketSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: [1, 'Quantity can not be less then 1.'],
-        deafult: 1,
+        default: 1,
       },
       price: [Number],
     },
   ],
   total: {
-    type: [Number],
+    type: Number,
     required: true,
     default: 0,
   },
@@ -29,10 +29,8 @@ const BasketSchema = new mongoose.Schema({
     default: Date.now,
   },
   date_updated: {
-    date_created: {
-      type: Date,
-      default: Date.now,
-    },
+    type: Date,
+    default: Date.now,
   },
 });
 
