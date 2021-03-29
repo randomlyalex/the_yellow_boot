@@ -55,7 +55,6 @@ const login = async (req, res) => {
     res.status(400).json({ msg: 'Username or Email and password required.' });
   }
   const user = await User.findOne({ $or: [{ email }, { username }] });
-  //this needs await adding and catches
   if (!user) return res.status(400).json({ msg: 'Incorrect details' });
 
   // Validate password
