@@ -47,7 +47,7 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete({ _id: req.query.pid });
-    res.json({ success: true });
+    res.status(204).json({ success: true });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error', _id: product.id });
