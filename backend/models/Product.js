@@ -54,7 +54,6 @@ const ProductSchema = new mongoose.Schema({
   },
   date_added: {
     type: Date,
-
     default: Date.now,
   },
 });
