@@ -6,19 +6,54 @@ const bcrypt = require('bcrypt');
 const register = async (req, res) => {
   const { username, name, email, password } = req.body;
 
+  //Check username or email already exists
+  const userExists = await User.findOne({
+    $or: [{ email }, { username }],
+  });
+  if (userExists) {
+    return res.status(400).send('email or username already in use');
+  }
+  let newUser = new User({ username, name, email, password });
+  //Hash the password and create new user from request data
+  bcrypt.hash(password, 10, async function (err, hashedPass) {
+    if (err) {
+      return res.json({ error: err });
+    }
+    newUser.password = hashedPass;
+    try {
+      await newUser.save();
+      let userToken = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+        expiresIn: 3600,
+      });
+      return res.status(200).json({
+        token: userToken,
+        newUser: {
+          id: newUser._id,
+          username: newUser.username,
+          name: newUser.name,
+          email: newUser.email,
+        },
+      });
+    } catch (err) {
+      return res.status(400).send(err);
+    }
+  });
+};
+
+function register_old(req, res) {
+  const { username, name, email, password } = req.body;
+
   if (!username || !name || !email || !password) {
     res.status(400).json({ msg: 'Please enter all fields' });
   }
 
-  const user = await User.findOne({ email });
+  User.findOne({ email }).then((user) => {
+    if (user) return res.status(400).json({ msg: 'Email already in use.' });
+  });
 
-  if (user) return res.status(400).json({ msg: 'Email already in use.' });
+  let newUser = new User({ username, name, email, password });
 
-  const newUser = new User({ username, name, email, password });
-
-  //fix this with async? https://attacomsian.com/blog/nodejs-password-hashing-with-bcrypt
-  // https://www.npmjs.com/package/bcrypt#api
-  // Create salt and hash
+  // Create salt and hash and save
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(password, salt, (err, hash) => {
       if (err) throw err;
@@ -44,7 +79,7 @@ const register = async (req, res) => {
       });
     });
   });
-};
+}
 
 const login = async (req, res) => {
   const { username, email, password } = req.body;
