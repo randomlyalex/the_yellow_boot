@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const BasketSchema = new mongoose.Schema({
   userId: {
     type: String,
+    unique: true,
   },
   items: [
     {
