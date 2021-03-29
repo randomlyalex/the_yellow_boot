@@ -4,9 +4,8 @@ const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error', error: err });
   }
 };
 
@@ -14,9 +13,8 @@ const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.query.pid);
     res.json(product);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error', error: err });
   }
 };
 
@@ -24,9 +22,8 @@ const postProduct = async (req, res) => {
   try {
     const newProduct = await new Product(req.body).save();
     res.json(newProduct);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error', error: err });
   }
 };
 
@@ -38,9 +35,8 @@ const updateProduct = async (req, res) => {
     );
     const updatedProduct = await Product.findOne({ _id: product.id });
     res.json(updatedProduct);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error', error: err });
   }
 };
 
@@ -48,9 +44,8 @@ const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete({ _id: req.query.pid });
     res.status(204).json({ success: true });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error', _id: product.id });
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error', error: err });
   }
 };
 
