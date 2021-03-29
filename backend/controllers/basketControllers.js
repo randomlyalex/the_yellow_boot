@@ -6,9 +6,9 @@ const getProducts = async (req, res) => {
   try {
     let basket = await Basket.findOne({ userId });
     if (basket && basket.items.length > 0) {
-      res.send(basket);
+      res.json(basket);
     } else {
-      res.send(null);
+      res.status(404).json({ msg: 'No basket for this user' });
     }
   } catch (err) {
     console.log(err);
@@ -42,20 +42,52 @@ const addProduct = async (req, res) => {
       } else {
         basket.items.push({ productId, name, quantity, price });
       }
-      for (i = 0; i < basket.total.length; i++) {
-        basket.total[i] += quantity * price[i];
-      }
-      basket.date_updated = Date.now;
-      basket = await basket.save();
-      return res.status(201).json(basket);
+      basket.total += quantity * price[2];
+      basket.date_updated = Date.now();
+      updatedBasket = await basket.save();
+      return res.status(201).json(updatedBasket);
     } else {
       // no cart exists, create one
-      const newCart = await Cart.create({
+      const newBasket = await Basket.create({
         userId,
         items: [{ productId, name, quantity, price }],
-        total: [quantity * price[0], quantity * price[1], quantity * price[2]],
+        total: quantity * price[2],
       });
-      return res.status(201).send(newCart);
+      return res.status(201).json(newBasket);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: 'Something went wrong', error: err });
+  }
+};
+
+const removeProduct = async (req, res) => {
+  const userId = req.query.uid;
+  const { productId, quantity } = req.body;
+
+  try {
+    let basket = await Basket.findOne({ userId });
+    let itemIndex = basket.items.findIndex(
+      (item) => item.productId == productId
+    );
+    if (itemIndex > -1) {
+      let productItem = basket.items[itemIndex];
+      if (productItem.quantity > quantity) {
+        productItem.quantity -= quantity;
+        basket.total -= quantity * productItem.price[2];
+        basket.items.splice(itemIndex, 1, productItem);
+      } else {
+        basket.total -= productItem.quantity * productItem.price[2];
+        basket.items.splice(itemIndex, 1);
+      }
+    }
+    basket.date_updated = Date.now();
+    if (basket.items.length < 1) {
+      await basket.delete();
+      return res.status(202).json({ msg: 'Basket deleted' });
+    } else {
+      updatedBasket = await basket.save();
+      return res.status(202).json(updatedBasket);
     }
   } catch (err) {
     console.log(err);
@@ -66,4 +98,5 @@ const addProduct = async (req, res) => {
 module.exports = {
   getProducts,
   addProduct,
+  removeProduct,
 };
