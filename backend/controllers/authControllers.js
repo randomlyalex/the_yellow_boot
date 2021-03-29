@@ -4,16 +4,17 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const register = (req, res) => {
-  const { name, email, password } = req.body;
+  // this needs async await
+  const { username, name, email, password } = req.body;
 
-  if (!name || !email || !password) {
+  if (!username || !name || !email || !password) {
     res.status(400).json({ msg: 'Please enter all fields' });
   }
 
   User.findOne({ email }).then((user) => {
     if (user) return res.status(400).json({ msg: 'Email already in use.' });
 
-    const newUser = new User({ name, email, password });
+    const newUser = new User({ username, name, email, password });
 
     // Create salt and hash
     bcrypt.genSalt(10, (err, salt) => {
@@ -31,6 +32,7 @@ const register = (req, res) => {
                 token,
                 user: {
                   id: user._id,
+                  user: user.username,
                   name: user.name,
                   email: user.email,
                 },
@@ -44,12 +46,15 @@ const register = (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    res.status(400).json({ msg: 'Please enter all fields' });
+  const { username, email, password } = req.body;
+  if (!password || !(email || username)) {
+    res.status(400).json({ msg: 'Username or Email and password required.' });
   }
-  User.findOne({ email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: 'No user found' });
+  user = User.findOne({
+    $or: [{ email }, { username }],
+  }).then((user) => {
+    //this needs await adding and catches
+    if (!user) return res.status(400).json({ msg: 'Incorrect details' });
 
     // Validate password
     bcrypt.compare(password, user.password).then((isMatch) => {
@@ -75,10 +80,9 @@ const login = async (req, res) => {
   });
 };
 
-const getUser = (req, res) => {
-  User.findById(req.user.id)
-    .select('-password')
-    .then((user) => res.json(user));
+const getUser = async (req, res) => {
+  const user = await User.findById(req.user.id).select('-password');
+  res.json(user);
 };
 
 module.exports = {
