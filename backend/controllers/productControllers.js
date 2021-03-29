@@ -2,10 +2,8 @@ const Product = require('../models/Product');
 
 const getProducts = async (req, res) => {
   try {
-    //double check this works with insomnia https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
-    const products = await Product.find()
-      .sort({ date: -1 })
-      .then((products) => res.json(products));
+    const products = await Product.find();
+    res.json(products);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
@@ -14,8 +12,7 @@ const getProducts = async (req, res) => {
 
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-
+    const product = await Product.findById(req.query.pid);
     res.json(product);
   } catch (error) {
     console.error(error);
@@ -25,8 +22,8 @@ const getProductById = async (req, res) => {
 
 const postProduct = async (req, res) => {
   try {
-    const newProduct = new Product(req.body);
-    newProduct.save().then((product) => res.json(product));
+    const newProduct = await new Product(req.body).save();
+    res.json(newProduct);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
@@ -35,13 +32,12 @@ const postProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    Product.findByIdAndUpdate({ _id: req.params.id }, req.body).then(
-      (product) => {
-        Product.findOne({ _id: req.params.id }).then((product) => {
-          res.json(product);
-        });
-      }
+    const product = await Product.findByIdAndUpdate(
+      { _id: req.query.pid },
+      req.body
     );
+    const updatedProduct = await Product.findOne({ _id: product.id });
+    res.json(updatedProduct);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
@@ -50,12 +46,11 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   try {
-    Product.findByIdAndDelete({ _id: req.params.id }).then((product) => {
-      res.json({ success: true });
-    });
+    const product = await Product.findByIdAndDelete({ _id: req.query.pid });
+    res.json({ success: true });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Server Error', _id: product.id });
   }
 };
 
