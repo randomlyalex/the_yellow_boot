@@ -12,27 +12,31 @@ const getOrders = async (req, res) => {
   }
 };
 
-const checkout = async (req, res) => {
+const createOrder = async (req, res) => {
   try {
     const userId = req.query.uid;
-    const { source } = req.body;
     let basket = await Basket.findOne({ userId });
-    let user = await User.findOne({ _id: userId });
-    const email = user.email;
+    // let user = await User.findOne({ _id: userId });
+    // const email = user.email;
     if (basket) {
       const charge = Math.random() < 0.5;
-      if (!charge) throw Error("Payment failed (it's random for this example)");
+      if (!charge) {
+        return res
+          .status(400)
+          .json({ msg: "Payment failed (it's random for this example)" });
+      }
       if (charge) {
         const order = await Order.create({
           userId,
           items: basket.items,
+          date_created: basket.date_created,
           total: basket.total,
         });
-        const data = await Basket.findByIdAndDelete({ _id: cart.id });
+        const data = await Basket.findByIdAndDelete({ _id: basket.id });
         return res.status(201).json(order);
       }
     } else {
-      res.status(500).json({ msg: 'Basket is empty' });
+      res.status(500).json({ msg: 'Basket is empty or not found' });
     }
   } catch (err) {
     console.log(err);
@@ -42,5 +46,5 @@ const checkout = async (req, res) => {
 
 module.exports = {
   getOrders,
-  checkout,
+  createOrder,
 };
