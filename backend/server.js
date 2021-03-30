@@ -6,6 +6,7 @@ const connect = require('./db/config/connect.js');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const basketRoutes = require('./routes/basketRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 connect();
 
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 app.use('/api', authRoutes);
 app.use('/api', productRoutes);
 app.use('/api', basketRoutes);
+app.use('/api', orderRoutes);
 
 const SERVER_PORT = process.env.SERVER_PORT || 4000;
 app.listen(SERVER_PORT, () =>
