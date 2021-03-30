@@ -29,6 +29,17 @@ const ProductSchema = new mongoose.Schema({
     enum: ['OUTDOOR', 'FASHION', 'SPORT', 'FORMAL'],
     required: true,
   },
+  // stock: [
+  //   {
+  //     size: String,
+  //     stockCount: {
+  //       type: Number,
+  //       required: true,
+  //       min: [0, 'Quantity can not be less then 0.'],
+  //       default: 0,
+  //     },
+  //   },
+  // ],
   imageUrls: {
     type: [String],
     required: true,
