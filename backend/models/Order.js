@@ -15,13 +15,17 @@ const OrderSchema = new mongoose.Schema({
         min: [1, 'Quantity can not be less then 1.'],
         default: 1,
       },
-      price: Number,
+      price: [Number],
     },
   ],
   total: {
     type: Number,
     required: true,
     default: 0,
+  },
+  date_created: {
+    type: Date,
+    required: true,
   },
   date_ordered: {
     type: Date,
