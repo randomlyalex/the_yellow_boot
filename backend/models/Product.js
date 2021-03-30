@@ -26,7 +26,7 @@ const ProductSchema = new mongoose.Schema({
   },
   category2: {
     type: String,
-    enum: ['OUTDOOR', 'FASHION', 'SPORT', 'FORMAL'],
+    enum: ['OUTDOOR', 'SPORT', 'FORMAL', 'TRAINERS', 'SANDALS', 'BOOTS'],
     required: true,
   },
   // stock: [
