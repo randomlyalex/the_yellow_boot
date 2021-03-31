@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 //Components
 import HeaderBar from './components/HeaderBar';
-import NavBar from './components/NavBar';
+import Navigation from './components/Navigation';
 
 //Containers
 
@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <HeaderBar></HeaderBar>
-      <NavBar></NavBar>
+      <Navigation></Navigation>
       {/* Top Navbar - Desktop */}
       {/* SideDrawer - Mobile */}
       {/* HomeScreen */}
