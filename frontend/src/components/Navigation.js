@@ -12,6 +12,7 @@ import { IconButton } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
 
 //Material UI Icons
 import MenuIcon from '@material-ui/icons/Menu';
@@ -32,34 +33,47 @@ const Navigation = () => {
             anchor="left"
             open={sideBarOpen}
             onClose={() => setSideBarOpen(false)}>
-            <Button
-              color="inherit"
-              to="/womens"
-              onClick={() => setSideBarOpen(false)}
-              component={RouterLink}>
-              Women's
-            </Button>
-            <Button
-              color="inherit"
-              to="/mens"
-              onClick={() => setSideBarOpen(false)}
-              component={RouterLink}>
-              Men's
-            </Button>
-            <Button
-              color="inherit"
-              to="/kids"
-              onClick={() => setSideBarOpen(false)}
-              component={RouterLink}>
-              Kid's
-            </Button>
-            <Button
-              color="inherit"
-              to="/sale"
-              onClick={() => setSideBarOpen(false)}
-              component={RouterLink}>
-              Sale
-            </Button>
+            <Tabs
+              value={tab}
+              onChange={handleTab}
+              indicatorColor="secondary"
+              textColor="secondary"
+              scrollButtons="desktop"
+              orientation="vertical"
+              variant="scrollable">
+              <Tab
+                label="Menu"
+                to="/womens"
+                component={RouterLink}
+                onClick={() => setSideBarOpen(false)}
+                disabled
+              />
+              <Divider />
+              <Tab
+                label="Women's"
+                to="/womens"
+                component={RouterLink}
+                onClick={() => setSideBarOpen(false)}
+              />
+              <Tab
+                label="Men's"
+                to="/mens"
+                component={RouterLink}
+                onClick={() => setSideBarOpen(false)}
+              />
+              <Tab
+                label="Kid's"
+                to="/kids"
+                component={RouterLink}
+                onClick={() => setSideBarOpen(false)}
+              />
+              <Tab
+                label="Sale"
+                to="/sale"
+                component={RouterLink}
+                onClick={() => setSideBarOpen(false)}
+              />
+            </Tabs>
           </Drawer>
         </aside>
       </Hidden>
