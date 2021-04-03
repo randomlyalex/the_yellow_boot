@@ -1,6 +1,6 @@
 import React from 'react';
 
-const footerBar = () => {
+const FooterBar = () => {
   return (
     <div>
       {/* Big show side by side, small stack. */}
@@ -33,4 +33,4 @@ const footerBar = () => {
   );
 };
 
-export default footerBar;
+export default FooterBar;
