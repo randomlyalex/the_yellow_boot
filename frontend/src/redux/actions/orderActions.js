@@ -8,7 +8,7 @@ export const getOrders = (uid) => (dispatch) => {
     .get(`/api/order/query?uid=${uid}`)
     .then((res) =>
       dispatch({
-        type: GET_ORDERS,
+        type: actionTypes.GET_ORDERS,
         payload: res.data,
       })
     )
@@ -22,7 +22,7 @@ export const createOrder = (uid) => (dispatch) => {
     .post(`/api/order/query?uid=${uid}`)
     .then((res) =>
       dispatch({
-        type: CREATE_ORDER,
+        type: actionTypes.CREATE_ORDER,
         payload: res.data,
       })
     )
@@ -33,6 +33,6 @@ export const createOrder = (uid) => (dispatch) => {
 
 export const setOrdersLoading = () => {
   return {
-    type: ORDERS_LOADING,
+    type: actionTypes.ORDERS_LOADING,
   };
 };
