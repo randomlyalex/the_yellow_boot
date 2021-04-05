@@ -1,0 +1,5 @@
+export const BASKET_LOADING = 'BASKET_LOADING';
+export const GET_BASKET = 'GET_BASKET';
+export const ADD_TO_BASKET = 'ADD_TO_BASKET';
+export const REMOVE_FROM_BASKET = 'REMOVE_FROM_BASKET';
+export const EMPTY_BASKET = 'EMPTY_BASKET';
