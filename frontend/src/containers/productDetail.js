@@ -8,13 +8,13 @@ import image3 from '../static/img/3.jpg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 700,
+    maxWidth: 500,
   },
   bigPic: {
-    maxWidth: '30vw',
+    maxWidth: '400px',
   },
   smallPic: {
-    maxWidth: '15vw',
+    maxWidth: '150px',
   },
 }));
 
@@ -34,31 +34,25 @@ const ProductDetail = () => {
 
       <Grid container>
         <Grid container item xs={12} sm={6}>
-          <Grid Grid container direction="column">
-            <Grid container item direction="column">
-              <Hidden xsDown>
-                <Grid item xs={0} sm={4} className={classes.smallPic}>
-                  <img src={image2} className={classes.smallPic} />
-                </Grid>
-              </Hidden>
-              <Hidden xsDown>
-                <Grid item xs={0} sm={4} className={classes.smallPic}>
-                  <img src={image1} className={classes.smallPic} />
-                </Grid>
-              </Hidden>
-
-              <Hidden xsDown>
-                <Grid item xs={0} sm={4} className={classes.smallPic}>
-                  <img src={image3} className={classes.smallPic} />
-                </Grid>
-              </Hidden>
-            </Grid>
-
-            <Grid direction="column">
+          <Grid container item>
+            <Grid container>
               <Grid item xs={12} sm={8} className={classes.bigPic}>
                 <img src={image1} className={classes.bigPic} />
               </Grid>
             </Grid>
+            <Hidden xsDown>
+              <Grid container>
+                <Grid item xs={0} sm={4} className={classes.smallPic}>
+                  <img src={image2} className={classes.smallPic} />
+                </Grid>
+                <Grid item xs={0} sm={4} className={classes.smallPic}>
+                  <img src={image1} className={classes.smallPic} />
+                </Grid>
+                <Grid item xs={0} sm={4} className={classes.smallPic}>
+                  <img src={image3} className={classes.smallPic} />
+                </Grid>
+              </Grid>
+            </Hidden>
           </Grid>
         </Grid>
         <Grid container item xs={12} sm={6}>
