@@ -14,26 +14,25 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import image1 from '../static/img/1.jpg';
 
-const ProductCard = () => {
-  const product = {
-    _id: { $oid: '605fbddde435615896b0cdb5' },
-    imageUrls: [
-      'http://website.com/url1.jpg',
-      'http://website.com/url2.jpg',
-      'http://website.com/url3.jpg',
-    ],
-    price: [5, 2, 12.0],
-    package_dimensions_cm: [35, 25, 13],
-    name: 'Shoe 1',
-    description: 'Shoe 1 description',
-    category1: 'MENS',
-    category2: 'FORMAL',
-    taxCode: '1',
-    weightkg: 1,
-    date_added: { $date: '2021-03-27T23:21:01.341Z' },
-    __v: 0,
-  };
-  const { imageUrls, description, price, name, id: productId } = product;
+const ProductCard = ({ product }) => {
+  // const product = {
+  //   _id: { $oid: '605fbddde435615896b0cdb5' },
+  //   imageUrls: [
+  //     'http://website.com/url1.jpg',
+  //     'http://website.com/url2.jpg',
+  //     'http://website.com/url3.jpg',
+  //   ],
+  //   price: [5, 2, 12.0],
+  //   package_dimensions_cm: [35, 25, 13],
+  //   name: 'Shoe 1',
+  //   description: 'Shoe 1 description',
+  //   category1: 'MENS',
+  //   category2: 'FORMAL',
+  //   taxCode: '1',
+  //   weightkg: 1,
+  //   date_added: { $date: '2021-03-27T23:21:01.341Z' },
+  //   __v: 0,
+  // };
 
   return (
     <>
@@ -44,7 +43,7 @@ const ProductCard = () => {
             <Grid container style={{ justifyContent: 'center' }} wrap="nowrap">
               <Grid item zeroMinWidth>
                 <Typography gutterBottom variant="h5" noWrap>
-                  {name}
+                  Name: {product['name']}
                 </Typography>
               </Grid>
             </Grid>
@@ -57,13 +56,13 @@ const ProductCard = () => {
             </Grid>
             <br />
             <Typography gutterBottom variant="h4">
-              {price[2]}
+              {'price' in product && product.price[2]}
             </Typography>
           </CardContent>
           <CardActions>
             <Button color="primary">Add to cart</Button>
             <Button color="primary">
-              <Link href={`/product/${productId}`} color="inherit">
+              <Link href={`/products/query?pid=${product._id}`} color="inherit">
                 More Details
               </Link>
             </Button>
