@@ -18,6 +18,8 @@ import SignUp from '../components/SignUp';
 
 //Actions
 import { logout } from '../redux/actions/authActions';
+import OrdersContainer from './OrdersContainer';
+import UserDetailsContainer from './UserDetailsContainer';
 
 const UserAccountContainer = () => {
   const dispatch = useDispatch();
@@ -35,7 +37,13 @@ const UserAccountContainer = () => {
           <Route path="/my-account" render={() => <SignIn />} />
         </Switch>
       ) : (
-        'You are logged in'
+        <Switch>
+          <Route
+            path="/my-account/my-details"
+            render={() => <UserDetailsContainer />}
+          />
+          <Route path="/my-account" render={() => <OrdersContainer />} />
+        </Switch>
       )}
     </>
   );
