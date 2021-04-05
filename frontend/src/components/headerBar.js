@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Material UI Components
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 
 const HeaderBar = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   return (
     <header>
       <AppBar position="relative" color="primary">
@@ -27,9 +30,18 @@ const HeaderBar = () => {
             <Button color="inherit" to="/stores" component={RouterLink}>
               Store Locate
             </Button>
-            <Button color="inherit" to="/my-account" component={RouterLink}>
-              My Account
-            </Button>
+            {isAuthenticated ? (
+              <Button color="inherit" to="/my-account" component={RouterLink}>
+                My Account
+              </Button>
+            ) : (
+              <Button
+                color="inherit"
+                to="/my-account/sign-in"
+                component={RouterLink}>
+                My Account
+              </Button>
+            )}
           </Grid>
         </Toolbar>
       </AppBar>
