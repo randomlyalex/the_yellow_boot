@@ -1,6 +1,15 @@
 import React from 'react';
-import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  BrowserRouter as Router,
+  Link as RouterLink,
+  Switch,
+  Route,
+  Redirect,
+  withRouter,
+} from 'react-router-dom';
 
 //Material UI Components
 import Grid from '@material-ui/core/Grid';
@@ -17,12 +26,71 @@ import Divider from '@material-ui/core/Divider';
 //Material UI Icons
 import MenuIcon from '@material-ui/icons/Menu';
 
+//Actions
+import { logout } from '../redux/actions/authActions';
+
 const Navigation = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   const [tab, setTab] = useState(0);
   const [sideBarOpen, setSideBarOpen] = useState(false);
 
   const handleTab = (event, newTab) => {
     setTab(newTab);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const MainNav = () => {
+    return (
+      <>
+        <Tab
+          label="Women's"
+          to="/womens"
+          component={RouterLink}
+          onClick={() => setSideBarOpen(false)}
+        />
+        <Tab
+          label="Men's"
+          to="/mens"
+          component={RouterLink}
+          onClick={() => setSideBarOpen(false)}
+        />
+        <Tab
+          label="Kid's"
+          to="/kids"
+          component={RouterLink}
+          onClick={() => setSideBarOpen(false)}
+        />
+        <Tab
+          label="Sale"
+          to="/sale"
+          component={RouterLink}
+          onClick={() => setSideBarOpen(false)}
+        />
+      </>
+    );
+  };
+
+  const AccountNav = () => {
+    return (
+      <>
+        <Tab
+          label="My Orders"
+          to="/my-account/my-orders"
+          component={RouterLink}
+        />
+        <Tab
+          label="My Details"
+          to="/my-account/my-details"
+          component={RouterLink}
+        />
+        <Tab label="Logout" onClick={handleLogout} />
+      </>
+    );
   };
 
   return (
@@ -41,44 +109,20 @@ const Navigation = () => {
               scrollButtons="desktop"
               orientation="vertical"
               variant="scrollable">
-              <Tab
-                label="Menu"
-                to="/womens"
-                component={RouterLink}
-                onClick={() => setSideBarOpen(false)}
-                disabled
-              />
+              <Tab label="Menu" disabled />
               <Divider />
-              <Tab
-                label="Women's"
-                to="/womens"
-                component={RouterLink}
-                onClick={() => setSideBarOpen(false)}
-              />
-              <Tab
-                label="Men's"
-                to="/mens"
-                component={RouterLink}
-                onClick={() => setSideBarOpen(false)}
-              />
-              <Tab
-                label="Kid's"
-                to="/kids"
-                component={RouterLink}
-                onClick={() => setSideBarOpen(false)}
-              />
-              <Tab
-                label="Sale"
-                to="/sale"
-                component={RouterLink}
-                onClick={() => setSideBarOpen(false)}
-              />
+              <MainNav />
+              <Divider />
+              {isAuthenticated && <AccountNav />}
             </Tabs>
           </Drawer>
         </aside>
       </Hidden>
       <nav>
-        <AppBar position="relative" color="primary">
+        <AppBar
+          position="relative"
+          color="primary"
+          style={{ marginBottom: '20px' }}>
           <Toolbar>
             <Hidden mdUp>
               <Grid item xs={1}>
@@ -106,10 +150,14 @@ const Navigation = () => {
                     textColor="secondary"
                     scrollButtons="desktop"
                     variant="fullWidth">
-                    <Tab label="Women's" to="/womens" component={RouterLink} />
-                    <Tab label="Men's" to="/mens" component={RouterLink} />
-                    <Tab label="Kid's" to="/kids" component={RouterLink} />
-                    <Tab label="Sale" to="/sale" component={RouterLink} />
+                    <Tab label="Home" to="/" component={RouterLink} />
+                    <Switch>
+                      <Route
+                        path="/my-account/"
+                        render={() => isAuthenticated && <AccountNav />}
+                      />
+                      <Route path="/" render={() => <MainNav />} />
+                    </Switch>
                   </Tabs>
                 </Grid>
               </Grid>
