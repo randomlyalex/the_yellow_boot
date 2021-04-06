@@ -24,7 +24,7 @@ const OrdersContainer = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    isAuthenticated && dispatch(listOrders(user._id));
+    user && isAuthenticated && !userLoading && dispatch(listOrders(user._id));
   }, [isAuthenticated, dispatch, user, userLoading]);
 
   const handleOrderClick = (order) => {
