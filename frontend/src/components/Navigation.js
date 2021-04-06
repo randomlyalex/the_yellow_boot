@@ -1,15 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Link as RouterLink, Switch, Route } from 'react-router-dom';
 
-import {
-  BrowserRouter as Router,
-  Link as RouterLink,
-  Switch,
-  Route,
-  Redirect,
-  withRouter,
-} from 'react-router-dom';
+//Redux
+import { useSelector, useDispatch } from 'react-redux';
 
 //Material UI Components
 import Grid from '@material-ui/core/Grid';
@@ -22,14 +16,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-} from '@material-ui/core/styles';
-
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 
 //Material UI Icons
 import MenuIcon from '@material-ui/icons/Menu';

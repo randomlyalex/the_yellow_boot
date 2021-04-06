@@ -1,33 +1,21 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  withRouter,
-} from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
 //MaterialUI
-import Button from '@material-ui/core/Button';
 
 //Components
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 
 //Actions
-import { logout } from '../redux/actions/authActions';
+
 import OrdersContainer from './OrdersContainer';
 import UserDetailsContainer from './UserDetailsContainer';
 
 const UserAccountContainer = () => {
-  const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
 
   return (
     <>

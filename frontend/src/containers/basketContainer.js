@@ -1,24 +1,17 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Grid } from '@material-ui/core';
 import BasketHeader from '../components/BasketHeader';
 import BasketItem from '../components/BasketItem';
 import BasketTotal from '../components/BasketTotal';
-import {
-  getBasket,
-  addToBasket,
-  removeFromBasket,
-  emptyBasket,
-} from '../redux/actions/basketActions';
+import { getBasket, emptyBasket } from '../redux/actions/basketActions';
 
 const BasketContainer = () => {
   const dispatch = useDispatch();
 
-  const { basketItems: basket, loading: basketLoading } = useSelector(
-    (state) => state.basket
-  );
+  const { basketItems: basket } = useSelector((state) => state.basket);
 
   const { order } = useSelector((state) => state.order);
 

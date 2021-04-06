@@ -1,14 +1,15 @@
-import { Grid, Typography, MenuItem, Paper, Button } from '@material-ui/core';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import React from 'react';
+
+// Redux
+import { useDispatch } from 'react-redux';
+
+//Material UI
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Grid, Paper, Button } from '@material-ui/core';
+
+//Actions
 import { createOrder } from '../redux/actions/orderActions';
-import { Redirect } from 'react-router';
 
 const BasketTotal = ({ basket }) => {
   const dispatch = useDispatch();

@@ -1,12 +1,11 @@
 import './App.css';
 import React from 'react';
-import { useState, useMemo } from 'react';
+// import { useState, useMemo } from 'react'; dark mode
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-  withRouter,
 } from 'react-router-dom';
 //Components
 import HeaderBar from './components/HeaderBar';
@@ -23,28 +22,25 @@ import ProductDetail from './containers/ProductDetail';
 //Containers
 
 //MUI
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+// import useMediaQuery from '@material-ui/core/useMediaQuery'; dark mode
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
   // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)'); dark mode
 
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          // type: prefersDarkMode ? 'dark' : 'light', dark mode
-          primary: {
-            main: '#b71c1c',
-          },
-          secondary: {
-            main: '##ff8a80',
-          },
-        },
-      })
-    // [prefersDarkMode] darkmode
-  );
+  const theme = createMuiTheme({
+    palette: {
+      // type: prefersDarkMode ? 'dark' : 'light', dark mode
+      primary: {
+        main: '#b71c1c',
+      },
+      secondary: {
+        main: '##ff8a80',
+      },
+    },
+  });
+  // [prefersDarkMode] darkmode
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,11 +70,6 @@ function App() {
         <footer>
           <FooterBar />
         </footer>
-        {/* Top Navbar - Desktop */}
-        {/* SideDrawer - Mobile */}
-        {/* HomeScreen */}
-        {/* Product Screen */}
-        {/* Basket Screen */}
       </Router>
     </ThemeProvider>
   );

@@ -7,7 +7,7 @@ import OrderItem from '../components/OrderItem';
 
 //Actions
 import { getOrders as listOrders } from '../redux/actions/orderActions';
-import { logout, loadUser } from '../redux/actions/authActions';
+import { loadUser } from '../redux/actions/authActions';
 
 const OrdersContainer = () => {
   const [clickedOrder, setClickedOrder] = useState(null);

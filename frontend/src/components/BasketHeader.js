@@ -1,5 +1,7 @@
-import { Divider, Grid, Hidden, Typography } from '@material-ui/core';
 import React from 'react';
+
+//Material UI
+import { Divider, Grid, Hidden, Typography } from '@material-ui/core';
 
 const BasketHeader = () => {
   return (
@@ -19,7 +21,9 @@ const BasketHeader = () => {
           </Grid>
 
           <Grid xs={8}>
-            <p>Some text about the basket</p>
+            <p>
+              Don't forget to check your mail for the latest updates and promos!
+            </p>
           </Grid>
         </Hidden>
       </Grid>

@@ -1,13 +1,5 @@
 import { Divider, Grid, Hidden, Typography } from '@material-ui/core';
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link as RouterLink,
-  Switch,
-  Route,
-  Redirect,
-  withRouter,
-} from 'react-router-dom';
 
 const ResultsHeader = ({ match }) => {
   const category =

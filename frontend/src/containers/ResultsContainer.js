@@ -43,7 +43,7 @@ const ResultsContainer = ({ match }) => {
               <h2>{error}</h2>
             ) : (
               products
-                .filter((product) => product.category1 == category)
+                .filter((product) => product.category1 === category)
                 .map((product) => (
                   <ProductCard key={product._id} product={product} />
                 ))

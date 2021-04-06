@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, Typography } from '@material-ui/core';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -44,12 +44,10 @@ const ProductDetail = ({ match, history }) => {
   const [imgRotate, setImgRotate] = useState(0);
   const dispatch = useDispatch();
 
-  const { isAuthenticated, user, isLoading: userLoading } = useSelector(
-    (state) => state.auth
-  );
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const productDetail = useSelector((state) => state.productDetail);
-  const { loading, product } = productDetail;
+  const { product } = productDetail;
 
   useEffect(() => {
     if (product && match.params.pid !== product._id) {
@@ -64,16 +62,6 @@ const ProductDetail = ({ match, history }) => {
   const classes = useStyles();
   return (
     <>
-      {/* Big picture */}
-      {/* smaller sub pictures to the side cycle through */}
-      {/* Title */}
-      {/* description */}
-      {/* Price */}
-      {/* Stock levels on size drop down? */}
-      {/*  Link / popover to size guide */}
-      {/* Add to basket */}
-      {/* Social share buttons on the main page */}
-
       <Grid container>
         <Grid container item xs={12} sm={6}>
           <Grid container item>
@@ -84,6 +72,7 @@ const ProductDetail = ({ match, history }) => {
                     <img
                       src={product.imageUrls[(imgRotate + 1) % 4]}
                       className={classes.smallPic}
+                      alt="big"
                     />
                   )}
                 </Grid>
@@ -92,6 +81,7 @@ const ProductDetail = ({ match, history }) => {
                     <img
                       src={product.imageUrls[(imgRotate + 2) % 4]}
                       className={classes.smallPic}
+                      alt="small"
                     />
                   )}
                 </Grid>
@@ -101,6 +91,7 @@ const ProductDetail = ({ match, history }) => {
                       <img
                         src={product.imageUrls[(imgRotate + 3) % 4]}
                         className={classes.smallPic}
+                        alt="small"
                       />
                     )}
                   </Grid>
@@ -114,6 +105,7 @@ const ProductDetail = ({ match, history }) => {
                     src={product.imageUrls[imgRotate % 4]}
                     className={classes.bigPic}
                     onClick={() => setImgRotate((imgRotate + 1) % 4)}
+                    alt="small"
                   />
                 )}
               </Grid>

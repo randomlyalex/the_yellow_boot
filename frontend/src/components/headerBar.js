@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+
+//Redux
+import { useSelector } from 'react-redux';
 
 //Material UI Components
 import Grid from '@material-ui/core/Grid';

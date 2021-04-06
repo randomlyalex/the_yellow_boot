@@ -1,30 +1,19 @@
-// import { Link } from 'react-router-dom';
 import React from 'react';
-import { useState, useEffect } from 'react';
+
+//Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-// Material UI components
-
+// Material UI
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-
-import Link from '@material-ui/core/Link';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import { CardActionArea } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 //Actions
-import {
-  getBasket,
-  addToBasket,
-  removeFromBasket,
-  emptyBasket,
-} from '../redux/actions/basketActions';
+import { addToBasket, removeFromBasket } from '../redux/actions/basketActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,13 +40,10 @@ const useStyles = makeStyles((theme) => ({
 const BasketItem = ({ item }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const theme = useTheme();
 
-  const { isAuthenticated, user, isLoading: userLoading } = useSelector(
-    (state) => state.auth
-  );
+  const { user } = useSelector((state) => state.auth);
 
-  const { imageUrls, description, quantity, price, name, productId } = item;
+  const { imageUrl, quantity, price, name, productId } = item;
 
   const increaseByOne = () => {
     dispatch(addToBasket(user._id, productId, 1));
@@ -84,16 +70,12 @@ const BasketItem = ({ item }) => {
             </CardContent>
             <div className={classes.controls}>
               <IconButton onClick={decreaseByOne}>-</IconButton>
-              <IconButton disabled>{item.quantity}</IconButton>
+              <IconButton disabled>{quantity}</IconButton>
               <IconButton onClick={increaseByOne}>+</IconButton>
             </div>
           </div>
 
-          <CardMedia
-            className={classes.image}
-            image={item.imageUrl}
-            title={name}
-          />
+          <CardMedia className={classes.image} image={imageUrl} title={name} />
         </Card>
       </Grid>
     </>
