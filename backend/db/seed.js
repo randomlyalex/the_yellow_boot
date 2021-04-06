@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const productData = require('./data/productData');
-
+const userData = require('./data/userData');
 const connect = require('./config/connect');
 
 const Product = require('../models/Product');
@@ -20,6 +20,7 @@ const importData = async () => {
     console.log('All DB data Deleted');
 
     await Product.insertMany(productData);
+    await User.insertMany(userData);
 
     console.log('Database seeded');
 
