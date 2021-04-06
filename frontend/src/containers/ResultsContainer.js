@@ -13,7 +13,7 @@ import { getProducts as listProducts } from '../redux/actions/productActions';
 
 const ResultsContainer = ({ match }) => {
   const dispatch = useDispatch();
-
+  const category = match.params.cat.toUpperCase();
   const getProducts = useSelector((state) => state.getProducts);
   const { products, loading, error } = getProducts;
 
@@ -42,9 +42,11 @@ const ResultsContainer = ({ match }) => {
             ) : error ? (
               <h2>{error}</h2>
             ) : (
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))
+              products
+                .filter((product) => product.category1 == category)
+                .map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))
             )}
           </Grid>
         </Grid>
