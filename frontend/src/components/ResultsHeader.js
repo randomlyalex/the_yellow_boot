@@ -1,7 +1,18 @@
 import { Divider, Grid, Hidden, Typography } from '@material-ui/core';
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Link as RouterLink,
+  Switch,
+  Route,
+  Redirect,
+  withRouter,
+} from 'react-router-dom';
 
-const ResultsHeader = () => {
+const ResultsHeader = ({ match }) => {
+  const category =
+    match.params.cat[0].toUpperCase() + match.params.cat.slice(1).toLowerCase();
+
   return (
     <header>
       <Hidden xsDown>
@@ -12,7 +23,7 @@ const ResultsHeader = () => {
           style={{ paddingTop: '25px' }}
           zeroMinWidth>
           <Grid xs={8} noWrap>
-            <Typography noWrap> Womens Shoes</Typography>
+            <Typography noWrap> {category} Shoes</Typography>
           </Grid>
 
           <Grid xs={8}>
@@ -21,14 +32,12 @@ const ResultsHeader = () => {
 
           <Grid xs={8}>
             <p>
-              Shop the latest collection of women's shoes at schuh. Our range of
-              women’s trainers and boots will have you spoiled for choice from
-              sporty street-style women’s Nike to statement Dr. Martens. In need
-              of a sky-high fit? We have an array of heeled shoes for women to
-              ensure you find your perfect party fit. With the latest arrivals
-              from your favourite brands including Vans and Converse, stay on
-              top of the latest trends all year round. Order ladies shoes before
-              10pm* for Next Day UK Delivery.
+              Shop the latest collection of {category} shoes at the Yellow Boot.
+              Our range of
+              {category} trainers and boots will have you spoiled for choice
+              from sporty street-style {category} Nike to statement Dr. Martens.
+              In need of a sky-high fit? We have an array of heeled shoes for
+              women to ensure you find your perfect party fit.
             </p>
           </Grid>
         </Grid>
