@@ -27,11 +27,23 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 
 //Actions
-import { logout } from '../redux/actions/authActions';
+import { logout, loadUser } from '../redux/actions/authActions';
+import { getBasket } from '../redux/actions/basketActions';
 
 const Navigation = () => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { basketItems } = useSelector((state) => state.basket);
+  const { isAuthenticated, user, isLoading: userLoading } = useSelector(
+    (state) => state.auth
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    isAuthenticated && dispatch(getBasket(user._id));
+  }, [isAuthenticated, dispatch, user, userLoading]);
 
   const [tab, setTab] = useState(0);
   const [sideBarOpen, setSideBarOpen] = useState(false);
@@ -49,25 +61,25 @@ const Navigation = () => {
       <>
         <Tab
           label="Women's"
-          to="/womens"
+          to="/cat/womens"
           component={RouterLink}
           onClick={() => setSideBarOpen(false)}
         />
         <Tab
           label="Men's"
-          to="/mens"
+          to="/cat/mens"
           component={RouterLink}
           onClick={() => setSideBarOpen(false)}
         />
         <Tab
           label="Kid's"
-          to="/kids"
+          to="/cat/kids"
           component={RouterLink}
           onClick={() => setSideBarOpen(false)}
         />
         <Tab
           label="Sale"
-          to="/sale"
+          to="/cat/sale"
           component={RouterLink}
           onClick={() => setSideBarOpen(false)}
         />
@@ -164,9 +176,11 @@ const Navigation = () => {
             </Hidden>
             <Grid item xs={10} md={2}>
               <Grid container justify="flex-end">
-                <Button color="inherit" to="/basket" component={RouterLink}>
-                  Basket
-                </Button>
+                {isAuthenticated ? (
+                  <Button color="inherit" to="/basket" component={RouterLink}>
+                    Basket {basketItems.items ? basketItems.items.length : null}
+                  </Button>
+                ) : null}
               </Grid>
             </Grid>
           </Toolbar>
