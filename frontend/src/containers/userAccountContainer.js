@@ -39,10 +39,10 @@ const UserAccountContainer = () => {
       ) : (
         <Switch>
           <Route
-            path="/my-account/my-details"
-            render={() => <UserDetailsContainer />}
+            path="/my-account/my-orders"
+            render={() => <OrdersContainer />}
           />
-          <Route path="/my-account" render={() => <OrdersContainer />} />
+          <Route path="/my-account" render={() => <UserDetailsContainer />} />
         </Switch>
       )}
     </>
