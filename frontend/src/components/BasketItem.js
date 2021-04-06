@@ -16,7 +16,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import image1 from '../static/img/1.jpg';
 import { CardActionArea } from '@material-ui/core';
 
 //Actions
@@ -30,6 +29,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    width: '500px',
   },
   details: {
     display: 'flex',
@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
   controls: {
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
   },
 }));
 
@@ -89,7 +89,11 @@ const BasketItem = ({ item }) => {
             </div>
           </div>
 
-          <CardMedia className={classes.image} image={image1} title={name} />
+          <CardMedia
+            className={classes.image}
+            image={item.imageUrl}
+            title={name}
+          />
         </Card>
       </Grid>
     </>

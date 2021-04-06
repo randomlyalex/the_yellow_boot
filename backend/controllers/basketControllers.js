@@ -27,7 +27,7 @@ const addProduct = async (req, res) => {
       res.status(404).json({ msg: 'Item not found' });
     }
     const { price, name } = product;
-
+    const imageUrl = product.imageUrls[0];
     if (basket) {
       // if cart exists for the user
       let itemIndex = basket.items.findIndex(
@@ -40,7 +40,7 @@ const addProduct = async (req, res) => {
         productItem.quantity += quantity;
         basket.items[itemIndex] = productItem;
       } else {
-        basket.items.push({ productId, name, quantity, price });
+        basket.items.push({ productId, imageUrl, name, quantity, price }); //check this change
       }
       basket.total += quantity * price[2];
       basket.date_updated = Date.now();
@@ -50,7 +50,7 @@ const addProduct = async (req, res) => {
       // no cart exists, create one
       const newBasket = await Basket.create({
         userId,
-        items: [{ productId, name, quantity, price }],
+        items: [{ productId, name, imageUrl, quantity, price }],
         total: quantity * price[2],
       });
       return res.status(201).json(newBasket);

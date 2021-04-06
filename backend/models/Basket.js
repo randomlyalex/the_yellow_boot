@@ -9,6 +9,9 @@ const BasketSchema = new mongoose.Schema({
       productId: {
         type: String,
       },
+      imageUrl: {
+        type: String,
+      }, //check this change
       name: String,
       quantity: {
         type: Number,
