@@ -21,7 +21,7 @@ TBC to deploy
 - [Redux Toolkit](https://redux-toolkit.js.org/) - Toolset for efficient Redux development
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk) - Middleware which allows action creators to return a function
 - [React Router](https://reactrouter.com/) - Library for general routing & navigation
-- [Material-UI w/ lots of CSS customisations](https://material-ui.com/) - UI library
+- [Material-UI](https://material-ui.com/) - UI library
 
 
 #### Back-end
