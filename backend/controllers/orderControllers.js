@@ -19,7 +19,7 @@ const createOrder = async (req, res) => {
     // let user = await User.findOne({ _id: userId });
     // const email = user.email;
     if (basket) {
-      const charge = Math.random() < 0.5;
+      const charge = true;
       if (!charge) {
         return res
           .status(400)
