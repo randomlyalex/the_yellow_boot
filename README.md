@@ -54,9 +54,18 @@ TBC to deploy
 #### Animated
 ![Animated](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/pI5Pi5ZaVi.gif)
 
-### Static
-![](url)
-
+### Static (in no order yet)
+![1](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.06.48.png)
+![2](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.07.14.png)
+![3](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.07.29.png)
+![4](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.07.46.png)
+![5](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.08.17.png)
+![6](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.08.43.png)
+![7](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.09.09.png)
+![7](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.09.23.png)
+![7](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.09.30.png)
+![7](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.09.49.png)
+![7](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.10.09.png)
 
 ##To setup
 
