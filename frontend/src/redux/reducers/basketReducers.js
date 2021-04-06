@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/basketConstants';
+import { CREATE_ORDER } from '../constants/orderConstants';
 
 const initialState = {
   basketItems: [],
@@ -26,10 +27,11 @@ export const basketReducers = (state = initialState, action) => {
         basketItems: action.payload,
       };
 
+    case CREATE_ORDER:
     case actionTypes.EMPTY_BASKET:
       return {
         ...state,
-        basketItems: action.payload,
+        basketItems: initialState.basketItems,
       };
 
     case actionTypes.BASKET_LOADING:
