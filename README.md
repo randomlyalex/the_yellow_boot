@@ -20,7 +20,6 @@ TBC to deploy
 - [Redux w/ hooks](https://redux.js.org/) - State management library
 - [Redux Toolkit](https://redux-toolkit.js.org/) - Toolset for efficient Redux development
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk) - Middleware which allows action creators to return a function
-- [React Router](https://reactrouter.com/) - Library for general routing & navigation
 - [Material-UI](https://material-ui.com/) - UI library
 
 
@@ -38,8 +37,8 @@ TBC to deploy
 
 - Authentication (login/register w/ username/email & password)
 - public user can browse, filter
-- Once logged in users can reload their basket, checkout usual CRUD orders/items
-- responsive UI for all screens, with three breakpoints for desktop, tablet and phone.
+- Once logged in users can reload their basket, checkout usual CRUD orders/items/people/baskets
+- Responsive UI for all screens, with three breakpoints for desktop, tablet and phone.
 - Dark mode toggle w/ local storage save (disabled for this demo)
 
 
@@ -47,7 +46,7 @@ TBC to deploy
 
 - Error management with descriptive messages, backend fires, front end is yet to capture logically
 - Toast notifications for actions and errors etc.
-- Loading spinners for fetching processes (currnetly silent or plain text
+- Loading spinners for fetching processes (currently silent or plain text only)
 - Put some UI around the Orders page
 - Implement an online returns policy
 
@@ -91,16 +90,25 @@ run: npm install
 
 #### DB
 
-This assumes a connection locally to mongoDB
-Database name: the_yellow_boot
-
-from root run: npm run seed-data
+This assumes a connection to mongoDB 
 
 ```
-mongodb://localhost:27017
+from root 
+run: npm run seed-data
+
 ```
 
-##To Run
+#### Env
+Database URI, name, port, and JWT secret all need adding to your local .env file:
+
+```
+SERVER_PORT=
+MONGODB=
+JWT_SECRET=
+
+```
+
+#### To Run
 
 ```
 from root: npm run dev
