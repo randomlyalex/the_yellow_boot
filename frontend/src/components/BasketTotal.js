@@ -5,22 +5,25 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { createOrder } from '../redux/actions/orderActions';
+import { Redirect } from 'react-router';
 
-const BasketTotal = () => {
+const BasketTotal = ({ basket }) => {
+  const dispatch = useDispatch();
+
+  const handleCheckout = () => {
+    dispatch(createOrder(basket.userId));
+  };
+
   return (
     <>
       <Paper style={{ padding: '25px', margin: '20px' }}>
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <FormControl>
-              <Select
-                native
-                value=""
-                onChange={''}
-                inputProps={{
-                  name: 'age',
-                  id: 'age-native-simple',
-                }}>
+              <Select native>
                 <option aria-label="None" value="">
                   Select Delivery/Collection
                 </option>
@@ -39,26 +42,25 @@ const BasketTotal = () => {
         </Grid>
         <Grid container spacing={2} justify="space-between">
           <Grid item xs={6}>
-            Subtotal
+            Subtotal:
           </Grid>
           <Grid item xs={6}>
-            50
+            {basket.total.toFixed(2)}
           </Grid>
           <Grid item xs={6}>
             Delivery
           </Grid>
           <Grid item xs={6}>
-            5
+            5.00
           </Grid>
           <Grid item xs={6}>
             Total
           </Grid>
           <Grid item xs={6}>
-            55
+            {(basket.total + 5).toFixed(2)}
           </Grid>
           <Grid item xs={12}>
-            {' '}
-            <Button>Checkout</Button>{' '}
+            <Button onClick={handleCheckout}>Checkout</Button>{' '}
           </Grid>
         </Grid>
       </Paper>
