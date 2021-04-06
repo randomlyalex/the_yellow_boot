@@ -61,7 +61,7 @@ function App() {
               component={ProductDetail}
             />
             <Route path="/my-account" render={() => <UserAccountContainer />} />
-            <Route path="/help" render={() => <HelpContainer />} />
+            <Route exact path="/help" component={HelpContainer} />
             <Route path="/stores" render={() => <StoreLocator />} />
             <Route exact path="/404" render={() => <p>404 page not found</p>} />
             <Redirect to="/404" />
