@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const productData = require('./data/productData');
 const userData = require('./data/userData');
+const orderData = require('./data/orderData');
 const connect = require('./config/connect');
 
 const Product = require('../models/Product');
@@ -21,6 +22,8 @@ const importData = async () => {
 
     await Product.insertMany(productData);
     await User.insertMany(userData);
+    // const alex = await User.findOne({ username: 'alexdodd' });
+    // await Order.insertMany(orderData(alex._id));
 
     console.log('Database seeded');
 
