@@ -12,6 +12,7 @@ connect();
 
 const app = express();
 app.use(express.json());
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'API backend running...' });
