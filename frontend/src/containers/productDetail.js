@@ -3,15 +3,25 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
 import Hidden from '@material-ui/core/Hidden';
-// import image1 from '../static/img/1.jpg';
-// import image2 from '../static/img/2.jpg';
-// import image3 from '../static/img/3.jpg';
+
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share';
+import {
+  EmailIcon,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from 'react-share';
 
 //Actions
 import { getProductById } from '../redux/actions/productActions';
@@ -85,14 +95,16 @@ const ProductDetail = ({ match, history }) => {
                     />
                   )}
                 </Grid>
-                <Grid item xs={0} sm={4} className={classes.smallPic}>
-                  {product.imageUrls && (
-                    <img
-                      src={product.imageUrls[(imgRotate + 3) % 4]}
-                      className={classes.smallPic}
-                    />
-                  )}
-                </Grid>
+                <Hidden smDown>
+                  <Grid item xs={0} sm={4} className={classes.smallPic}>
+                    {product.imageUrls && (
+                      <img
+                        src={product.imageUrls[(imgRotate + 3) % 4]}
+                        className={classes.smallPic}
+                      />
+                    )}
+                  </Grid>
+                </Hidden>
               </Grid>
             </Hidden>
             <Grid container>
@@ -110,13 +122,15 @@ const ProductDetail = ({ match, history }) => {
         </Grid>
         <Grid container item xs={12} sm={6}>
           <Grid item xs={12}>
-            {product.name}
+            <Typography variant="h2">{product.name}</Typography>
           </Grid>
           <Grid item xs={12}>
-            {product.description}
+            <Typography variant="h4">{product.description}</Typography>
           </Grid>
           <Grid item xs={12}>
-            £ {'price' in product && product.price[2].toFixed(2)}
+            <Typography variant="h4">
+              £ {'price' in product && product.price[2].toFixed(2)}
+            </Typography>
           </Grid>
           <Grid item xs={6}>
             <FormControl>
@@ -167,10 +181,31 @@ const ProductDetail = ({ match, history }) => {
           </Grid>
           <Grid item xs={6}>
             {isAuthenticated ? (
-              <Button onClick={handleAddToBasket}>Add to Basket</Button>
+              <Button
+                onClick={handleAddToBasket}
+                variant="contained"
+                color="primary">
+                Add to Basket
+              </Button>
             ) : (
-              <Button disabled>Sign in to Add to Basket</Button>
+              <Button disabled variant="outlined" color="primary">
+                Sign in to Add to Basket
+              </Button>
             )}
+          </Grid>
+          <Grid item xs={12}>
+            <EmailShareButton url={window.location.href}>
+              <EmailIcon size={32} round={true} />
+            </EmailShareButton>
+            <FacebookShareButton url={window.location.href}>
+              <FacebookIcon size={32} round={true} />
+            </FacebookShareButton>
+            <TwitterShareButton url={window.location.href}>
+              <TwitterIcon size={32} round={true} />
+            </TwitterShareButton>
+            <WhatsappShareButton url={window.location.href}>
+              <WhatsappIcon size={32} round={true} />
+            </WhatsappShareButton>
           </Grid>
         </Grid>
       </Grid>
