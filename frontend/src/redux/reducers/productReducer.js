@@ -51,7 +51,7 @@ export const productReducers = (state = initialProductsState, action) => {
 };
 
 const initialProductDetailState = {
-  products: [],
+  product: {},
   loading: false,
 };
 
@@ -63,7 +63,7 @@ export const productDetailReducers = (
     case actionTypes.GET_PRODUCT_BY_ID:
       return {
         ...state,
-        products: action.payload,
+        product: action.payload,
         loading: false,
       };
     default:
