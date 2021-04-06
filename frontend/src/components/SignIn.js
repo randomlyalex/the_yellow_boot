@@ -48,9 +48,6 @@ const SignIn = () => {
           <TextField
             variant="outlined"
             margin="normal"
-            // onChange={(e) => {
-            //   setEmail(e.target.value);
-            // }}
             fullWidth
             id="email"
             label="Email Address"
@@ -61,9 +58,6 @@ const SignIn = () => {
           <TextField
             variant="outlined"
             margin="normal"
-            // onChange={(e) => {
-            //   setUsername(e.target.value);
-            // }}
             fullWidth
             id="username"
             label="Username"
