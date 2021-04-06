@@ -6,13 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import FormLabel from '@material-ui/core/FormLabel';
 import Hidden from '@material-ui/core/Hidden';
 // import image1 from '../static/img/1.jpg';
 // import image2 from '../static/img/2.jpg';
 // import image3 from '../static/img/3.jpg';
-
-import Select from '@material-ui/core/Select';
 
 //Actions
 import { getProductById } from '../redux/actions/productActions';
@@ -32,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductDetail = ({ match, history }) => {
   const [qty, setQty] = useState(1);
+  const [imgRotate, setImgRotate] = useState(0);
   const dispatch = useDispatch();
 
   const { isAuthenticated, user, isLoading: userLoading } = useSelector(
@@ -67,24 +67,45 @@ const ProductDetail = ({ match, history }) => {
       <Grid container>
         <Grid container item xs={12} sm={6}>
           <Grid container item>
-            <Grid container>
-              <Grid item xs={12} sm={8} className={classes.bigPic}>
-                <img src="/public/img/1.jpg" className={classes.bigPic} />
-              </Grid>
-            </Grid>
             <Hidden xsDown>
               <Grid container>
                 <Grid item xs={0} sm={4} className={classes.smallPic}>
-                  <img src="/public/img/2.jpg" className={classes.smallPic} />
+                  {product.imageUrls && (
+                    <img
+                      src={product.imageUrls[(imgRotate + 1) % 4]}
+                      className={classes.smallPic}
+                    />
+                  )}
                 </Grid>
                 <Grid item xs={0} sm={4} className={classes.smallPic}>
-                  <img src="/public/img/3.jpg" className={classes.smallPic} />
+                  {product.imageUrls && (
+                    <img
+                      src={product.imageUrls[(imgRotate + 2) % 4]}
+                      className={classes.smallPic}
+                    />
+                  )}
                 </Grid>
                 <Grid item xs={0} sm={4} className={classes.smallPic}>
-                  <img src="/public/img/4.jpg" className={classes.smallPic} />
+                  {product.imageUrls && (
+                    <img
+                      src={product.imageUrls[(imgRotate + 3) % 4]}
+                      className={classes.smallPic}
+                    />
+                  )}
                 </Grid>
               </Grid>
             </Hidden>
+            <Grid container>
+              <Grid item xs={12} sm={8} className={classes.bigPic}>
+                {product.imageUrls && (
+                  <img
+                    src={product.imageUrls[imgRotate % 4]}
+                    className={classes.bigPic}
+                    onClick={() => setImgRotate((imgRotate + 1) % 4)}
+                  />
+                )}
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
         <Grid container item xs={12} sm={6}>
