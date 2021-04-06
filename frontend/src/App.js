@@ -31,18 +31,13 @@ function App() {
       <main>
         <Switch>
           <Route exact path="/" render={() => <HomeContainer />} />
-          <Route path="/womens" render={() => <ResultsContainer />} />
-          <Route path="/mens" render={() => <ResultsContainer />} />
-          <Route path="/kids" render={() => <ResultsContainer />} />
-          <Route path="/sale" render={() => <ResultsContainer />} />
+          <Route exact path="/cat/:cat" component={ResultsContainer} />
           <Route path="/basket" render={() => <BasketContainer />} />
-          <Route exact path="/product/:id" render={() => <ProductDetail />} />
+          <Route exact path="/product/detail/:pid" component={ProductDetail} />
           <Route path="/my-account" render={() => <UserAccountContainer />} />
           <Route path="/help" render={() => <HelpContainer />} />
           <Route path="/stores" render={() => <StoreLocator />} />
           <Route exact path="/404" render={() => <p>404 page not found</p>} />
-          <Redirect to="/404" />
-
           <Redirect to="/404" />
         </Switch>
       </main>
