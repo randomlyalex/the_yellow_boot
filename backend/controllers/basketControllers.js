@@ -63,10 +63,14 @@ const addProduct = async (req, res) => {
 
 const removeProduct = async (req, res) => {
   const userId = req.query.uid;
-  const { productId, quantity } = req.body;
+  const { productId, basketId, quantity } = req.body;
 
   try {
     let basket = await Basket.findOne({ userId });
+    if (basket._id == basketId) {
+      await Basket.findByIdAndDelete(basketId);
+      return res.status(202).json({ msg: 'Basket deleted' });
+    }
     let itemIndex = basket.items.findIndex(
       (item) => item.productId == productId
     );

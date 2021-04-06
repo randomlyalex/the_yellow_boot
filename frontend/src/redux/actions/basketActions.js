@@ -31,12 +31,26 @@ export const addToBasket = (uid, productId, quantity) => async (dispatch) => {
     );
 };
 
-export const deleteFromBasket = (uid, productId, quantity) => (dispatch) => {
+export const removeFromBasket = (uid, productId, quantity) => (dispatch) => {
   axios
     .delete(`/api/basket/query?uid=${uid}`, { productId, quantity })
     .then((res) =>
       dispatch({
-        type: actionTypes.DELETE_FROM_BASKET,
+        type: actionTypes.REMOVE_FROM_BASKET,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const emptyBasket = (uid, basketId) => (dispatch) => {
+  axios
+    .delete(`/api/basket/query?uid=${uid}`, { basketId })
+    .then((res) =>
+      dispatch({
+        type: actionTypes.EMPTY_BASKET,
         payload: res.data,
       })
     )

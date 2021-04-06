@@ -26,6 +26,12 @@ export const basketReducers = (state = initialState, action) => {
         basketItems: action.payload,
       };
 
+    case actionTypes.EMPTY_BASKET:
+      return {
+        ...state,
+        basketItems: action.payload,
+      };
+
     case actionTypes.BASKET_LOADING:
       return {
         ...state,
