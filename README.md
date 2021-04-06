@@ -52,7 +52,7 @@ TBC to deploy
 ## Screenshots
 
 #### Animated
-![](url)
+![Animated](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/pI5Pi5ZaVi.gif)
 
 ### Static
 ![](url)
