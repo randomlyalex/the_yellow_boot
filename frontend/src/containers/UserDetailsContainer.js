@@ -12,13 +12,15 @@ const UserDetailsContainer = () => {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <div>
-      <p>Address' can be added and removed from here.</p>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Username: {user.username}</p>
-      <p> Change password link</p>
-    </div>
+    <Grid container justify="center">
+      <Grid item>
+        <p>Address' can be added and removed from here.</p>
+        <p>Name: {user.name}</p>
+        <p>Email: {user.email}</p>
+        <p>Username: {user.username}</p>
+        <p> Change password link</p>
+      </Grid>
+    </Grid>
   );
 };
 
