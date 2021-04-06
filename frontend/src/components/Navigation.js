@@ -22,6 +22,14 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from '@material-ui/core/styles';
+
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
 
 //Material UI Icons
 import MenuIcon from '@material-ui/icons/Menu';
@@ -42,7 +50,7 @@ const Navigation = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    isAuthenticated && dispatch(getBasket(user._id));
+    user && isAuthenticated && !userLoading && dispatch(getBasket(user._id));
   }, [isAuthenticated, dispatch, user, userLoading]);
 
   const [tab, setTab] = useState(0);
