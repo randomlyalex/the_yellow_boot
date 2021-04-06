@@ -1,5 +1,7 @@
 // import { Link } from 'react-router-dom';
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 // Material UI components
@@ -15,6 +17,15 @@ import Link from '@material-ui/core/Link';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import image1 from '../static/img/1.jpg';
+import { CardActionArea } from '@material-ui/core';
+
+//Actions
+import {
+  getBasket,
+  addToBasket,
+  removeFromBasket,
+  emptyBasket,
+} from '../redux/actions/basketActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,29 +48,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BasketItem = () => {
+const BasketItem = ({ item }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
 
-  const product = {
-    _id: { $oid: '605fbddde435615896b0cdb5' },
-    imageUrls: [
-      'http://website.com/url1.jpg',
-      'http://website.com/url2.jpg',
-      'http://website.com/url3.jpg',
-    ],
-    price: [5, 2, 12.0],
-    package_dimensions_cm: [35, 25, 13],
-    name: 'Shoe 1',
-    description: 'Shoe 1 description',
-    category1: 'MENS',
-    category2: 'FORMAL',
-    taxCode: '1',
-    weightkg: 1,
-    date_added: { $date: '2021-03-27T23:21:01.341Z' },
-    __v: 0,
+  const { isAuthenticated, user, isLoading: userLoading } = useSelector(
+    (state) => state.auth
+  );
+
+  const { imageUrls, description, quantity, price, name, productId } = item;
+
+  const increaseByOne = () => {
+    dispatch(addToBasket(user._id, productId, 1));
   };
-  const { imageUrls, description, price, name, id: productId } = product;
+  const decreaseByOne = () => {
+    dispatch(removeFromBasket(user._id, productId, 1));
+  };
 
   return (
     <>
@@ -71,15 +76,19 @@ const BasketItem = () => {
                 {name}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                Brand
+                Brand Here
+              </Typography>
+              <Typography component="h5" variant="h5">
+                £ {price[2].toFixed(2)}
               </Typography>
             </CardContent>
             <div className={classes.controls}>
-              <IconButton>-ve</IconButton>
-              <IconButton disabled>Qty</IconButton>
-              <IconButton>+ve</IconButton>
+              <IconButton onClick={decreaseByOne}>-</IconButton>
+              <IconButton disabled>{item.quantity}</IconButton>
+              <IconButton onClick={increaseByOne}>+</IconButton>
             </div>
           </div>
+
           <CardMedia className={classes.image} image={image1} title={name} />
         </Card>
       </Grid>
