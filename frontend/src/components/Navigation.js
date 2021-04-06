@@ -156,7 +156,7 @@ const Navigation = () => {
             <Grid item xs={1}>
               <Grid container justify="flex-start">
                 <Button color="inherit" to="/" component={RouterLink}>
-                  LOGO
+                  Logo
                 </Button>
               </Grid>
             </Grid>
