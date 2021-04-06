@@ -11,7 +11,7 @@ import ResultsRefine from '../components/ResultsRefine';
 //actions
 import { getProducts as listProducts } from '../redux/actions/productActions';
 
-const ResultsContainer = () => {
+const ResultsContainer = ({ match }) => {
   const dispatch = useDispatch();
 
   const getProducts = useSelector((state) => state.getProducts);
@@ -35,7 +35,7 @@ const ResultsContainer = () => {
         </Grid>
 
         <Grid item xl={10} spacing={5} justify="center">
-          <ResultsHeader />
+          <ResultsHeader match={match} />
           <Grid item container xs={12}>
             {loading ? (
               <h2>Loading...</h2>
