@@ -1,5 +1,6 @@
 import './App.css';
-import { useState } from 'react';
+import React from 'react';
+import { useState, useMemo } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,35 +22,65 @@ import ProductDetail from './containers/ProductDetail';
 
 //Containers
 
+//MUI
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 function App() {
+  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)'); dark mode
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          // type: prefersDarkMode ? 'dark' : 'light', dark mode
+          primary: {
+            main: '#b71c1c',
+          },
+          secondary: {
+            main: '##ff8a80',
+          },
+        },
+      })
+    // [prefersDarkMode] darkmode
+  );
+
   return (
-    <Router>
-      <header>
-        <HeaderBar />
-      </header>
-      <Navigation />
-      <main>
-        <Switch>
-          <Route exact path="/" render={() => <HomeContainer />} />
-          <Route exact path="/cat/:cat" component={ResultsContainer} />
-          <Route path="/basket" render={() => <BasketContainer />} />
-          <Route exact path="/product/detail/:pid" component={ProductDetail} />
-          <Route path="/my-account" render={() => <UserAccountContainer />} />
-          <Route path="/help" render={() => <HelpContainer />} />
-          <Route path="/stores" render={() => <StoreLocator />} />
-          <Route exact path="/404" render={() => <p>404 page not found</p>} />
-          <Redirect to="/404" />
-        </Switch>
-      </main>
-      <footer>
-        <FooterBar />
-      </footer>
-      {/* Top Navbar - Desktop */}
-      {/* SideDrawer - Mobile */}
-      {/* HomeScreen */}
-      {/* Product Screen */}
-      {/* Basket Screen */}
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <header>
+          <HeaderBar />
+        </header>
+        <Navigation />
+        <main>
+          <Switch>
+            <Route exact path="/" render={() => <HomeContainer />} />
+            <Route exact path="/cat/:cat" component={ResultsContainer} />
+            <Route path="/basket" render={() => <BasketContainer />} />
+            <Route
+              exact
+              path="/product/detail/:pid"
+              component={ProductDetail}
+            />
+            <Route path="/my-account" render={() => <UserAccountContainer />} />
+            <Route path="/help" render={() => <HelpContainer />} />
+            <Route path="/stores" render={() => <StoreLocator />} />
+            <Route exact path="/404" render={() => <p>404 page not found</p>} />
+            <Redirect to="/404" />
+          </Switch>
+        </main>
+        <footer>
+          <FooterBar />
+        </footer>
+        {/* Top Navbar - Desktop */}
+        {/* SideDrawer - Mobile */}
+        {/* HomeScreen */}
+        {/* Product Screen */}
+        {/* Basket Screen */}
+      </Router>
+    </ThemeProvider>
   );
 }
 
