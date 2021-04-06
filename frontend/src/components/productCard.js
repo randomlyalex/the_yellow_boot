@@ -60,9 +60,9 @@ const ProductCard = ({ product }) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button color="primary">Add to cart</Button>
+            {/* <Button color="primary">Add to cart</Button> */}
             <Button color="primary">
-              <Link href={`/products/query?pid=${product._id}`} color="inherit">
+              <Link href={`/product/detail/${product._id}`} color="inherit">
                 More Details
               </Link>
             </Button>
