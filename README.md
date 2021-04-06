@@ -53,10 +53,14 @@ TBC to deploy
 ## Screenshots
 
 #### Animated
-![Animated1](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/rZqH5CKTMv.gif)
+3 minutes of all features in mp4:
+[!Animated1](https://recordit.co/rZqH5CKTMv)
 
+Quick mix1 gif:
+![Animated2](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/rZqH5CKTMv.gif)
 
-![Animated2](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/pI5Pi5ZaVi.gif)
+Quick mix2 gif: 
+![Animated3](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/pI5Pi5ZaVi.gif)
 
 ### Static (in no order yet)
 ![1](https://github.com/randomlyalex/the_yellow_boot/blob/master/screenshots/Screenshot%202021-04-06%20at%2014.06.48.png)
