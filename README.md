@@ -46,8 +46,8 @@ TBC to deploy
 ## To -do
 
 - Error management with descriptive messages, backend fires, front end is yet to capture logically
-- Toast notifications for actions: creating projects, removing membes etc.
-- Loading spinners for fetching processes
+- Toast notifications for actions and errors etc.
+- Loading spinners for fetching processes (currnetly silent or plain text
 
 ## Screenshots
 
