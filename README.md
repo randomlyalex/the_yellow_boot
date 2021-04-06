@@ -4,8 +4,6 @@ A Full Stack Ecommerce project built with MERN as part of an interview process.
 
 Original Brief given [here](https://github.com/randomlyalex/the_yellow_boot/blob/master/planning/brief/Golden_Shoe_.pdf).
 
-[Link to figma wireframe and planning](https://www.figma.com/files/project/25720481/OpenSpaces)
-
 [Link to planing diagrams](https://github.com/randomlyalex/the_yellow_boot/blob/master/planning/the_yellow_boot.svg)
 
 
