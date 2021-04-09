@@ -38,6 +38,7 @@ TBC to deploy
 - Authentication (login/register w/ username/email & password)
 - public user can browse, filter
 - Once logged in users can reload their basket, checkout usual CRUD orders/items/people/baskets
+- Basket will follow users across devices, and persist outside of cache refresh
 - Responsive UI for all screens, with three breakpoints for desktop, tablet and phone.
 - Dark mode toggle w/ local storage save (disabled for this demo)
 
